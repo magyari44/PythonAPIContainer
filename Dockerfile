@@ -1,5 +1,5 @@
 FROM alpine:3.8
-MAINTAINER Jonathan Gonzalez <j@0x30.io> @EA1HET
+MAINTAINER Norbert Magyari
 
 RUN apk add --no-cache python3                                  \
     && python3 -m ensurepip                                     \

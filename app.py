@@ -7,7 +7,7 @@
 
 # pylint: disable=invalid-name;
 # In order to avoid false positives with Flask
-
+import json
 from os import environ
 from datetime import datetime
 from flask import Flask, jsonify, make_response, url_for, request
@@ -93,11 +93,8 @@ def index():
     return make_response(
         jsonify(
             {
-                'msg': 'this is index endpoint',
+                'scenario': json.dump([2,0,2,0,2,0]),
                 'tstamp': datetime.utcnow().timestamp(),
-                'endpoints': {
-                    'url_echo': url_for('echo', _external=True)
-                }
             }
         ), 200, headers
     )
@@ -127,15 +124,7 @@ def echo(**kwargs):
     return make_response(
         jsonify(
             {
-                'msg': 'this is an echo endpoint',
-                'tstamp': datetime.utcnow().timestamp(),
-                'namespace_params': {
-                    'content_received': content,
-                    'language': lang
-                },
-                'endpoints': {
-                    'url_index': url_for('index', _external=True)
-                }
+                'msg': json.dumps([2,0,2,0,2,0]),
             }
         ), 200, headers
     )
