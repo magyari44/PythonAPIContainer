@@ -100,7 +100,7 @@ def index():
     )
 
 
-@APP.route('/echo', methods=['POST'])
+@APP.route('/scenario', methods=['POST'])
 @APP.route('/echo/<string:item>', methods=['POST'])
 def echo(**kwargs):
     """
@@ -121,10 +121,19 @@ def echo(**kwargs):
 
     headers = {}
 
+    content = request.json
+    outside_temp = content['outside_temp']
+    inside_temp = content['inside_temp']
+    set_temp = content['set_temp']
+    test_value = content['test_value']
+
+    keep_scenario = [2, 0, 2, 0, 2, 0]
+    heat_scenario = [8, 8, 8, 5, 3, 1]
+
     return make_response(
         jsonify(
             {
-                'msg': json.dumps(["2","0","2","0","2","0"]),
+                'scenario': json.dumps(keep_scenario if test_value else heat_scenario),
             }
         ), 200, headers
     )
