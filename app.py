@@ -89,11 +89,12 @@ def index():
     """
 
     headers = {}
+    keep_scenario = [2, 0, 2, 0, 2, 0]
 
     return make_response(
         jsonify(
             {
-                'scenario': json.dumps(["2","0","2","0","2","0"]),
+                'scenario': json.dumps(keep_scenario),
                 'tstamp': datetime.utcnow().timestamp(),
             }
         ), 200, headers
@@ -134,6 +135,7 @@ def echo(**kwargs):
         jsonify(
             {
                 'scenario': json.dumps(keep_scenario if test_value else heat_scenario),
+                'tstamp': datetime.utcnow().timestamp(),
             }
         ), 200, headers
     )
