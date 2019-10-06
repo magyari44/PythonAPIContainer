@@ -93,7 +93,7 @@ def index():
     return make_response(
         jsonify(
             {
-                'scenario': json.dump(["2","0","2","0","2","0"]),
+                'scenario': json.dumps(["2","0","2","0","2","0"]),
                 'tstamp': datetime.utcnow().timestamp(),
             }
         ), 200, headers
@@ -124,7 +124,7 @@ def echo(**kwargs):
     return make_response(
         jsonify(
             {
-                'msg': json.dump(["2","0","2","0","2","0"]),
+                'msg': json.dumps(["2","0","2","0","2","0"]),
             }
         ), 200, headers
     )
