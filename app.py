@@ -10,7 +10,7 @@
 import json
 from os import environ
 from datetime import datetime
-from flask import Flask, jsonify, make_response, url_for, request
+from flask import Flask, jsonify, make_response, url_for, request, logging
 import settings
 
 # -- Application initialization. ---------------------------------------------
@@ -127,6 +127,11 @@ def echo(**kwargs):
     inside_temp = content['inside_temp']
     set_temp = content['set_temp']
     test_value = content['test_value']
+
+    payload = content['payload']
+
+    logging.debug('Payload is:')
+    logging.debug(payload)
 
     keep_scenario = [2, 0, 2, 0, 2, 0]
     heat_scenario = [8, 8, 8, 5, 3, 1]
