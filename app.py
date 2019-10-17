@@ -130,8 +130,7 @@ def echo(**kwargs):
 
     payload = content['payload']
 
-    logging.debug('Payload is:')
-    logging.debug(payload)
+    app.logger.info('%s rest sensor payload', payload)
 
     keep_scenario = [2, 0, 2, 0, 2, 0]
     heat_scenario = [8, 8, 8, 5, 3, 1]
@@ -141,6 +140,7 @@ def echo(**kwargs):
             {
                 'scenario': json.dumps(keep_scenario if test_value else heat_scenario),
                 'tstamp': datetime.utcnow().timestamp(),
+                'payload_echo' : payload
             }
         ), 200, headers
     )
@@ -149,4 +149,5 @@ def echo(**kwargs):
 # -- Finally, the application is run, more or less ;) ------------------------
 
 if __name__ == '__main__':
+    app = Flask(__name__)
     APP.run()
